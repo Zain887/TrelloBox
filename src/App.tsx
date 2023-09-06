@@ -5,7 +5,7 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
+      {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
@@ -18,7 +18,8 @@ function App() {
         >
           Learn React
         </a>
-      </header>
+      </header> */}
+      <h1 className=' text-teal-600 text-9xl'>hello</h1>
     </div>
   );
 }
