@@ -12,6 +12,7 @@ interface Props {
 const TodoComp: React.FC<Props> = ({ columnIndex, cardIndex, columns, setColumns }) => {
     const todoList: Todo[] = columns[columnIndex].cards[cardIndex].todos;
     const [memberPopUp, setMemberPopUp] = useState(false);
+    const [selectedTodoIndex , setSelectedTodoIndex] = useState<number | null>(null);
 
     const closeMemberPopup = () => {
         setMemberPopUp(false);
@@ -48,6 +49,17 @@ const TodoComp: React.FC<Props> = ({ columnIndex, cardIndex, columns, setColumns
         const newColumns = [...columns];
         newColumns[columnIndex].cards[cardIndex].todos[todoIndex].checked = !newColumns[columnIndex].cards[cardIndex].todos[todoIndex].checked;
         setColumns(newColumns);
+        setSelectedTodoIndex(todoIndex);
+    };
+
+    const [assign, setAssign] = useState<string[]>([]);
+    const handleMemberSelect = (index: number, name: string) => {
+      console.log('todoIndex', selectedTodoIndex)
+      console.log('name', selectedTodoIndex)
+        // console.log(`Selected member at index ${index} and the name is ${name}`);
+        const updatedAssign = [...assign];
+        updatedAssign.push(name);
+        setAssign(updatedAssign);
     };
     return (
         <>
@@ -76,9 +88,12 @@ const TodoComp: React.FC<Props> = ({ columnIndex, cardIndex, columns, setColumns
                             >
                                 {todo.label}
                                 {todo.label !== 'TaskToDo' ? (
-                                    <span className='text-red-600 text-sm cursor-pointer' title='AssignMemberList' onClick={()=>{setMemberPopUp(true)}}>
-                                        (AS.List)
-                                    </span>
+                                    <>
+                                        <span className='text-red-600 text-sm cursor-pointer' title='AssignMemberList' onClick={() => { setMemberPopUp(true) }}>
+                                            (AS.List)
+                                        </span>
+                                        <p className='text-sm'>{assign}</p>
+                                    </>
                                 ) : null}
                             </p>
                         )}
@@ -94,7 +109,7 @@ const TodoComp: React.FC<Props> = ({ columnIndex, cardIndex, columns, setColumns
                 </button>
             </div>
             {memberPopUp && (
-                <Member showListOnly={false} close={closeMemberPopup} />
+                <Member showListOnly={false} close={closeMemberPopup} onMemberSelect={handleMemberSelect} />
             )}
         </>
     );

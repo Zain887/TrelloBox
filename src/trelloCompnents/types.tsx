@@ -9,6 +9,7 @@ export interface Todo {
   label: string;
   checked: boolean;
   edit: boolean;
+  member?: string;
 }
 
 export interface Card {

@@ -5,9 +5,10 @@ import { useMemberContext } from './MemberContext';
 interface props {
     showListOnly?: boolean
     close?: () => void
+    onMemberSelect?: (index: number, name: string) => void // Add the onMemberSelect prop
 }
 
-const Member: React.FC<props> = ({ showListOnly = true, close, }) => {
+const Member: React.FC<props> = ({ showListOnly = true, close, onMemberSelect }) => {
     const { members, addNewMember } = useMemberContext();
     const [newMemberName, setNewMemberName] = useState('');
     return (
@@ -45,7 +46,7 @@ const Member: React.FC<props> = ({ showListOnly = true, close, }) => {
                 <ul className='space-y-2 h-full px-5 overflow-y-auto mt-2 absolute top-0 right-0 w-full backdrop-blur-sm'>
                     <p className='text-red-600 bg-red-50 rounded-lg font-extrabold text-center text-base'>Assign Members To Task</p>
                     {members.map((member, index) => (
-                        <div className='flex items-center gap-5'>
+                        <div className='flex items-center gap-5' onClick={() => onMemberSelect && onMemberSelect(index, member.name)}>
                             <input type="checkbox" className='h-4 w-4' />
                             <li key={index} className='text-base font-bold text-[#00ffff]'>
                                 {member.name}

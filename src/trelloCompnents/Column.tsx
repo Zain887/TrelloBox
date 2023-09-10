@@ -54,9 +54,9 @@ const ColumnComp: React.FC = () => {
   };
 
   return (
-    <div className='inline-flex gap-3'>
+    <div className='inline-flex items-center'>
       {columns.map((column, columnIndex) => (
-        <div key={columnIndex} className='p-3 bg-[#101204] md:w-[380px] rounded-xl h-fit'>
+        <div key={columnIndex} className='p-3 bg-[#101204] md:w-[380px] rounded-xl h-fit ml-3'>
           <div className='flex justify-between items-center pb-3'>
             {column.edit ? (
               <input
@@ -92,7 +92,7 @@ const ColumnComp: React.FC = () => {
           </div>
         </div>
       ))}
-      <button className=' bg-blue-500 w-[179px] px-6 h-12 rounded-lg font-bold hover:text-orange-600 hover:bg-black' onClick={addNewColumn}>
+      <button className=' bg-blue-500 w-[179px] mx-3 px-6 h-12 rounded-lg font-bold hover:text-orange-600 hover:bg-black' onClick={addNewColumn}>
         Add Another List
       </button>
     </div>
