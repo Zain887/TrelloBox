@@ -54,12 +54,9 @@ const TodoComp: React.FC<Props> = ({ columnIndex, cardIndex, columns, setColumns
 
     const [assign, setAssign] = useState<string[]>([]);
     const handleMemberSelect = (index: number, name: string) => {
-      console.log('todoIndex', selectedTodoIndex)
-      console.log('name', selectedTodoIndex)
-        // console.log(`Selected member at index ${index} and the name is ${name}`);
-        const updatedAssign = [...assign];
-        updatedAssign.push(name);
-        setAssign(updatedAssign);
+       if (selectedTodoIndex) {
+                 
+       }
     };
     return (
         <>
